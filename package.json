@@ -1,0 +1,20 @@
+{
+  "name": "cy-scaffolding",
+  "version": "1.0.0",
+  "description": "Small cypress scaffolding project to test running some automation using github actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "cypress run --browser chrome --headless",
+    "start": "cypress open"
+  },
+  "keywords": [
+    "cypress",
+    "scaffolding"
+  ],
+  "author": "sebastianpennino",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "9.7.0",
+    "typescript": "4.7.2"
+  }
+}
