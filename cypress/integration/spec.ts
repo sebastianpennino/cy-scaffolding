@@ -11,9 +11,7 @@ describe('Example Cypress TodoMVC test', () => {
   })
 
   it('adds 2 todos', function () {
-    cy.get('.new-todo')
-      .type('learn testing{enter}')
-      .type('be cool{enter}')
+    cy.get('.new-todo').type('learn testing{enter}').type('be cool{enter}')
     cy.get('.todo-list li').should('have.length', 2)
   })
 
@@ -22,7 +20,7 @@ describe('Example Cypress TodoMVC test', () => {
   })
 
   it('calls into plugins process via cy.task', () => {
-    cy.task('log', 'Hello Node!')
+    cy.task('log', 'Finished!')
   })
 
   // more examples

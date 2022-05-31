@@ -1,8 +1,6 @@
 # Cypress Scaffolding Project
 
-> This projects contains the minimun necessary scaffolding files to have a cypress runner ready to go (using typescript), automatic formatting (using husky) before commit and a proper github action to run the test on regular basis
-
-[![standard][standard-image]][standard-url]
+> This projects contains the minimun necessary files to have a cypress runner ready to go (using typescript), automatic formatting before commit (using husky) and a proper github action to run the test suit on regular basis
 
 ## Setup
 1. Clone the repo
@@ -72,6 +70,3 @@ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
-
-[standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
-[standard-url]: http://standardjs.com/
