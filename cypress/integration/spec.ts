@@ -2,30 +2,43 @@
 // https://on.cypress.io/intelligent-code-completion
 /// <reference types="cypress" />
 
+const { _ } = Cypress
+
+const baseURL = 'https://google.com/'
+
+const feedViews = [
+  {
+    testname: 'Google: No country redirect',
+    url: '/ncr',
+  },
+  {
+    testname: 'Google News, reactjs',
+    url: '/search?q=reactjs&source=lnms&tbm=nws',
+  },
+  {
+    testname: 'Google Images, bird search',
+    url: '/search?q=bird&tbm=isch&source=lnms',
+  },
+  {
+    testname: 'Google Flights',
+    url: '/travel/flights',
+  },
+  {
+    testname: 'Google Finance',
+    url: '/finance/?source=lmns&hl=en',
+  },
+]
+
 describe('Example Cypress TodoMVC test', () => {
   beforeEach(() => {
-    // usually we recommend setting baseUrl in cypress.json
-    // but for simplicity of this example we just use it here
-    // https://on.cypress.io/visit
-    cy.visit('http://todomvc.com/examples/vue/')
+    cy.visit(baseURL)
+    cy.wait(500)
   })
 
-  it('adds 2 todos', function () {
-    cy.get('.new-todo').type('learn testing{enter}').type('be cool{enter}')
-    cy.get('.todo-list li').should('have.length', 2)
+  _.each(feedViews, (page) => {
+    it(`visits ${page.testname} page`, function () {
+      cy.visit(baseURL + page.url)
+      cy.wait(5000)
+    })
   })
-
-  it('calls custom commands from support file', () => {
-    cy.customCommand().should('equal', 42)
-  })
-
-  it('calls into plugins process via cy.task', () => {
-    cy.task('log', 'Finished!')
-  })
-
-  // more examples
-  //
-  // https://github.com/cypress-io/cypress-example-todomvc
-  // https://github.com/cypress-io/cypress-example-kitchensink
-  // https://on.cypress.io/writing-your-first-test
 })

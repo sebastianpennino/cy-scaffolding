@@ -1,0 +1,40 @@
+name: Daily Run
+
+on:
+  workflow_dispatch:
+  # schedule:
+    # * is a special character in YAML so you have to quote this string
+    # Runs everyday at 11:15 UTC (04:15 PT, 07:15 EST, 08:15 ART)
+    # - cron: '15 11 * * *'
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-20.04
+    env:
+      SOME_EXAMPLE_SECRET: ${{ secrets.SOME_EXAMPLE_SECRET }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          always-auth: true
+          node-version: '16.13.1'
+          registry-url: https://registry.npmjs.org
+          scope: '@fullbeaker'
+          cache: 'npm'
+
+      - name: Install npm dependencies
+        run: npm ci
+        env:
+          OTHER_EXAMPLE_SECRET: ${{ secrets.OTHER_EXAMPLE_SECRET }}
+
+      - name: Cypress.io
+        uses: cypress-io/github-action@v2.9.7
+        with:
+          build: npx cypress info
+          browser: chrome
+          headless: true
+          config: defaultCommandTimeout=100000,pageLoadTimeout=100000,watchForFileChanges=false,video=false
+          spec: cypress/integration/spec.ts

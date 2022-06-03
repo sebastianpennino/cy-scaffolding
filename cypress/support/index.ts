@@ -13,6 +13,13 @@
 // You can read more here:
 // https://on.cypress.io/configuration
 // ***********************************************************
+
+declare namespace Cypress {
+  interface Chainable<Subject> {
+    customCommand(): Chainable<any>
+  }
+}
+
 Cypress.Commands.add('customCommand', () => {
   return cy.wrap(42)
 })
